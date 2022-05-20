@@ -5,6 +5,7 @@
 # Then type 'make pgm' to make the NE2001 interface 
 # or        'make lib' to meke the library.
 #
+FC = gfortran
 RANLIB  = ranlib
 ARFLAGS = rc
 FFLAGS  = -O -std=gnu
