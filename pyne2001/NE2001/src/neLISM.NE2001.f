@@ -52,8 +52,14 @@ c other variables:
     real FLDRQ1r, FLSBr, FLHBr, FLOOPIr     ! 'r' for returned value
     integer wLDR, wLSB, wLHB, wLOOPI
 
+c----------------------------------------------------------------------------
+       CHARACTER(len=255) :: GET_PATH
+c----------------------------------------------------------------------------
+
     if(first) then                  ! read parameters for LISM
-      open(11,file='nelism.inp',status='unknown')
+      open(11,file=TRIM(GET_PATH())//'nelism.inp',
+     .      status='unknown')
+c      open(11,file='nelism.inp',status='unknown')
       read(11,*)
       read(11,*) aldr,bldr,cldr
       read(11,*) xldr,yldr,zldr

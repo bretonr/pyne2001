@@ -62,6 +62,10 @@ c                 1 => uniform and truncated at 1/e
 
     save
 
+c----------------------------------------------------------------------------
+       CHARACTER(len=255) :: GET_PATH
+c----------------------------------------------------------------------------
+
 c first time through, read input clump parameters and calculate
 c LOS quantities. 
 c lc,bc = Galactic coordinates (deg)
@@ -75,7 +79,10 @@ c losname = useful name
     if(first) then      !read clump parameters
       j=1
 c     write(6,*) 'reading neclumpN.NE2001.dat'
-      open(luclump, file='neclumpN.NE2001.dat', status='old')
+      open(luclump, 
+     .      file=TRIM(GET_PATH())//'neclumpN.NE2001.dat',
+     .      status='old')
+c      open(luclump, file='neclumpN.NE2001.dat', status='old')
       read(luclump,*)               ! label line
     5     read(luclump,*,end=99) clumpflag,lc(j),bc(j),nec(j),Fc(j),
      .           dc(j),rc(j),edge(j)

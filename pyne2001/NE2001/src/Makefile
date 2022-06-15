@@ -17,7 +17,7 @@ BINDIR = ../bin
 ########################################################################
 PROGRAM = NE2001
 OBJECTS = dmdsm.NE2001.o density.NE2001.o neLISM.NE2001.o neclumpN.o \
-		nevoidN.o scattering98.o
+		nevoidN.o scattering98.o get_path.o
 
 usage:
 	@echo 'Please type one of the following:'
@@ -50,6 +50,8 @@ nevoidN.o: nevoidN.f
 dmdsm.NE2001.o: dmdsm.NE2001.f
 
 scattering98.o: scattering98.f
+
+get_path.o: get_path.f
 
 clean: 
 	$(RM) $(BINDIR)/$(PROGRAM) $(PROGRAM).o $(OBJECTS) lib$(PROGRAM).a

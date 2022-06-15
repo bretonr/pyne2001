@@ -73,12 +73,19 @@ c                 1 => uniform and truncated at 1/e
 
     save
 
+c----------------------------------------------------------------------------
+       CHARACTER(len=255) :: GET_PATH
+c----------------------------------------------------------------------------
+
 c first time through, calculate xc, yc, zc
 
     if(first) then      !read void parameters
       j=1
 c     write(6,*) 'reading nevoidN.dat.clean'
-      open(luvoid, file='nevoidN.NE2001.dat', status='old')
+        open(luvoid, 
+     .      file=TRIM(GET_PATH())//'nevoidN.NE2001.dat', 
+     .      status='old')
+c      open(luvoid, file='nevoidN.NE2001.dat', status='old')
       read(luvoid,*)                ! label line
     5     read(luvoid,*,end=99) voidflag, 
      .      lv(j),bv(j),dv(j),              ! deg, deg, kpc
