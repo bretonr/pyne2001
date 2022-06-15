@@ -9,7 +9,7 @@ FC = gfortran
 RANLIB  = ranlib
 ARFLAGS = rc
 FFLAGS  = -O -std=gnu
-LDFLAGS = -s
+LDFLAGS = 
 #
 BINDIR = ../bin
 #

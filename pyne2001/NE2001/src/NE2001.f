@@ -13,7 +13,7 @@ c  or pulsar DM as a function of l, b, and distance.
       real tau, sbw, stime, theta_g, theta_x, transfreq, emsm 
 
       real nu
-            data nu/1./
+        data nu/1./
 
       character*1 limit
 
@@ -21,13 +21,13 @@ c  or pulsar DM as a function of l, b, and distance.
       data rad/57.2957795/
 
       real vperp
-            data vperp/100./
+        data vperp/100./
 
 c functions:
 
       integer iargc_
       external iargc_
-            real em, tauiss, scintbw, scintime, theta_xgal, theta_gal
+      real em, tauiss, scintbw, scintime, theta_xgal, theta_gal
       real transition_frequency
 
       nargs = iargc()
@@ -42,12 +42,12 @@ c functions:
          read(inbuf, *) ndir
       else
          write(*,*) 'Usage: NE2001 l b DM/D ndir'
-               write(*,*) '       l (deg)'
-               write(*,*) '       b (deg)'
-               write(*,*) '       DM/D (pc cm^{-3} or kpc)'
-               write(*,*) '       ndir = 1 (DM->D)   -1 (D->DM) '
+         write(*,*) '       l (deg)'
+         write(*,*) '       b (deg)'
+         write(*,*) '       DM/D (pc cm^{-3} or kpc)'
+         write(*,*) '       ndir = 1 (DM->D)   -1 (D->DM) '
          stop
-            endif
+      endif
 
       write(*,*)'#NE2001 input: 4 parameters'
       write(*,"(f10.4, t20, a, t30, a, t55, a)") 
@@ -62,10 +62,11 @@ c functions:
       write(*,*)'#NE2001 output: 14 values'
 
       if(ndir.ge.0) then
-              dm = dmd
+        dm = dmd
         call dmdsm(ldeg/rad,bdeg/rad,ndir, dm,
      .               dist,limit,sm,smtau,smtheta,
      .               smiso)
+
         write(*,"(a,f9.4, t20, a, t30, a, t55,a)") 
      .         limit, dist, 'DIST', '(kpc)','ModelDistance'
         write(*,"(f10.4, t20, a, t30, a, t55, a)") 
@@ -78,10 +79,10 @@ c functions:
         call dmdsm(ldeg/rad,bdeg/rad,ndir, dm,
      .               dist,limit,sm,smtau,smtheta,
      .               smiso)
-c     write(6,*) 'dm,sm,smtau,smtheta = ', 
+c        write(6,*) 'dm,sm,smtau,smtheta = ', 
 c    .               dm,sm,smtau,smtheta
-c1020     format(f8.2,3(1x,e8.3))
-c     write(6,*) 'dmz = ', dm*abs(sin(bdeg/rad))
+c1020        format(f8.2,3(1x,e8.3))
+c        write(6,*) 'dmz = ', dm*abs(sin(bdeg/rad))
         write(*,"(f10.4, t20, a, t30, a, t55, a)") 
      .          dist, 'DIST', '(kpc)', 'Distance'
         write(*,"(f10.4, t20, a, t30, a, t55,a)") dm, 'DM', 
@@ -94,13 +95,13 @@ c     write(6,*) 'dmz = ', dm*abs(sin(bdeg/rad))
 c calculate scattering parameters
 
  
-            tau = tauiss(dist, smtau, nu)
-            sbw = scintbw(dist, smtau, nu)
-            stime = scintime(smtau, nu, vperp)
-            theta_x = theta_xgal(sm, nu)
-            theta_g = theta_gal(smtheta, nu)
+      tau = tauiss(dist, smtau, nu)
+      sbw = scintbw(dist, smtau, nu)
+      stime = scintime(smtau, nu, vperp)
+      theta_x = theta_xgal(sm, nu)
+      theta_g = theta_gal(smtheta, nu)
       transfreq = transition_frequency(sm,smtau,smtheta,dist)
-            emsm = em(sm)
+      emsm = em(sm)
       write(*,"(e10.4, t20, a, t30, a, t55, a)") sm, 'SM', 
      .           '(kpc-m^{-20/3})', 'ScatteringMeasure' 
       write(*,"(e10.4, t20, a, t30, a, t55, a)") smtau, 'SMtau', 
@@ -130,5 +131,6 @@ c calculate scattering parameters
       write(*,"(f10.2, t20, a, t30, a, t55, a)") transfreq, 
      .           'NU_T', 
      .           '(GHz)', 'TransitionFrequency' 
+
       stop
       end
